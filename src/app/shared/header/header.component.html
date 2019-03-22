@@ -1,7 +1,16 @@
-<nav class="navbar navbar-light bg-danger">
-  <a class="navbar-brand text-uppercase font-weight-bold">FagronTech</a>
-  <form class="form-inline">
-    <a class="btn btn-dark my-2 my-sm-0 mr-3" routerLink="/CadastrarCliente">Cadastrar</a>
-    <a class="btn btn-dark my-2 my-sm-0 mr-3" routerLink="/ConsultarCliente">Consultar clientes</a>
-  </form>
+<nav class="navbar navbar-expand-lg navbar-light bg-danger">
+  <a class="navbar-brand text-uppercase font-weight-bold" routerLink="">FagronTech</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav justify-content-end">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link font-weight-bold" routerLink="/CadastrarCliente">Cadastrar <span class="sr-only">(Página atual)</span></a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link font-weight-bold" routerLink="/ConsultarCliente">Consultar clientes</a>
+      </li>
+    </ul>
+  </div>
 </nav>

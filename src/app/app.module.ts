@@ -8,6 +8,7 @@ import { AppRoutingModule } from "./app.routing.module";
 import { ErrorsModule } from "./errors/errors.module";
 import { ClientesListaModule } from "./list/clientes-lista.module";
 import { RegisterModule } from "./register/register.module";
+import { HeaderModule } from "./shared/header/header.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,8 @@ import { RegisterModule } from "./register/register.module";
     ClientesListaModule,
     AppRoutingModule,
     ErrorsModule,
-    RegisterModule
+    RegisterModule,
+    HeaderModule
   ],
   providers: [ClienteService],
   bootstrap: [AppComponent]

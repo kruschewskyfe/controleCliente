@@ -1,5 +1,3 @@
-<app-header></app-header>
-
 <div class="text-center mt-5 mb-5">
   <h2>Clientes cadastrados</h2>
 </div>
@@ -26,12 +24,12 @@
         <td>{{ cliente.Nome }}</td>
         <td>{{ cliente.Sobrenome }}</td>
         <td>{{ cliente.Cpf }}</td>
-        <td>{{ cliente.DataNascimento }}</td>
+        <td>{{ cliente.DataNascimento | date:'dd/MM/yyyy'}}</td>
         <td>{{ cliente.Idade }}</td>
         <td>{{ cliente.Profissao }}</td>
-        <td><button type="button" class="btn btn-warning"><i aria-hidden="true" class="fa fa-edit"></i></button></td>
-        <td><button type="button" class="btn btn-danger"><i aria-hidden="true" class="fa fa-trash"></i></button></td>
-        <td><button type="button" class="btn btn-info"><i aria-hidden="true" class="fa fa-info-circle"></i></button></td>
+        <td><a class="btn btn-warning" [routerLink]="['/AtualizarCliente', cliente.Id]"><i aria-hidden="true" class="fa fa-edit"></i></a></td>
+        <td><a class="btn btn-danger" (click)="deletar(cliente.Id)"><i aria-hidden="true" class="fa fa-trash"></i></a></td>
+        <td><a class="btn btn-info" [routerLink]="['/Cliente', cliente.Id]"><i aria-hidden="true" class="fa fa-info-circle"></i></a></td>
       </tr>
     </tbody>
   </table>

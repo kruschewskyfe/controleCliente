@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { NewClient } from "./new-client";
+import { CadastrarService } from "./cadastrar.service";
 
 @Component({
   selector: "app-clientes-form",
@@ -7,11 +9,16 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 })
 export class ClientesFormComponent implements OnInit {
   cadastrarForm: FormGroup;
+  dataAtual = new Date();
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private cadastrarService: CadastrarService
+  ) {}
 
   ngOnInit(): void {
     this.cadastrarForm = this.formBuilder.group({
+      id: [, [Validators.required, Validators.minLength(1)]],
       nome: [
         "",
         [Validators.required, Validators.minLength(2), Validators.maxLength(30)]
@@ -29,15 +36,49 @@ export class ClientesFormComponent implements OnInit {
         [
           Validators.required,
           Validators.pattern("[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}"),
+          Validators.minLength(11),
           Validators.maxLength(11)
         ]
       ],
       dataNascimento: [""],
+      idade: [],
       profissao: [""]
     });
   }
 
+  date_diff_indays = function(date1, date2) {
+    let dt1 = new Date(date1);
+    let dt2 = new Date(date2);
+    return Math.floor(
+      (Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) -
+        Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) /
+        (1000 * 60 * 60 * 24) /
+        365
+    );
+  };
+
   cadastrarCliente() {
-    return null;
+    const novoC: NewClient = {
+      id: this.cadastrarForm.value.id,
+      nome: this.cadastrarForm.value.nome,
+      sobrenome: this.cadastrarForm.value.sobrenome,
+      cpf: this.cadastrarForm.value.cpf,
+      dataNascimento: this.cadastrarForm.value.dataNascimento,
+      idade: this.date_diff_indays(
+        this.cadastrarForm.value.dataNascimento,
+        this.dataAtual
+      ),
+      profissao: this.cadastrarForm.value.profissao
+    };
+
+    //const novoCliente = this.cadastrarForm.getRawValue() as NewClient;
+    this.cadastrarService
+      .cadastrarCliente(novoC)
+      .subscribe(
+        () => alert("Cadastrado com sucesso"),
+        err => console.log(err)
+      );
+
+    this.cadastrarForm.reset();
   }
 }

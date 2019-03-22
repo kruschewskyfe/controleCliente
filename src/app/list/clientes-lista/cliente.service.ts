@@ -12,7 +12,26 @@ export class ClienteService {
 
   listar() {
     return this.http.get<Cliente[]>(
-      clienteUrl + "/api/cliente/ConsultarCliente"
+      `${clienteUrl}/api/cliente/ConsultarCliente`
+    );
+  }
+
+  deletar(id) {
+    return this.http.delete<Cliente[]>(
+      `${clienteUrl}/api/cliente/ExcluirCliente/${id}`
+    );
+  }
+
+  consultarPorId(id) {
+    return this.http.get<Cliente[]>(
+      `${clienteUrl}/api/cliente/ConsultarClientePorCodigo/${id}`
+    );
+  }
+
+  atualizarCliente(cliente) {
+    return this.http.put<Cliente[]>(
+      `${clienteUrl}/api/cliente/AlterarCliente/${cliente.id}`,
+      cliente
     );
   }
 }
