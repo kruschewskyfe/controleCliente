@@ -1,11 +1,11 @@
-
+<app-header></app-header>
 
 <div class="text-center mt-5 mb-5">
   <h2>Cadastre um novo cliente</h2>
 </div>
 
 <div class="container mt-5 mb-5">
-  <form [formGroup]="cadastrarForm" class="form mt-4">
+  <form [formGroup]="cadastrarForm" class="form mt-4" (submit)="cadastrarCliente()">
       <div class="form-group">
           <small class="font-weight-bold">Nome</small>
           <input formControlName="nome" placeholder="nome" class="form-control" autofocus >

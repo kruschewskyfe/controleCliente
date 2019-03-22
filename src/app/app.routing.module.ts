@@ -7,6 +7,7 @@ import { NotFoundComponent } from "./errors/not-found/not-found.component";
 import { ClientesListaResolver } from "./list/clientes-lista/clientes-lista.resolver";
 
 const rotas: Routes = [
+  { path: "", component: ClientesFormComponent },
   {
     path: "ConsultarCliente",
     component: ClientesListaComponent,

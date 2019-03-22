@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { ClientesFormComponent } from "./clientes-form/clientes-form.component";
 import { CommonModule } from "@angular/common";
 import { ValidationMessageModule } from "../shared/validation-message/validation-message.module";
+import { HeaderModule } from "../shared/header/header.module";
 
 @NgModule({
   declarations: [ClientesFormComponent],
@@ -11,7 +12,8 @@ import { ValidationMessageModule } from "../shared/validation-message/validation
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    ValidationMessageModule
+    ValidationMessageModule,
+    HeaderModule
   ]
 })
 export class RegisterModule {}

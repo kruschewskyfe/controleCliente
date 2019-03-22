@@ -36,4 +36,8 @@ export class ClientesFormComponent implements OnInit {
       profissao: [""]
     });
   }
+
+  cadastrarCliente() {
+    return null;
+  }
 }
