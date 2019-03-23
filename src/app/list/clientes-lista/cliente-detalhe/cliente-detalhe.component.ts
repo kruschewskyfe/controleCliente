@@ -29,7 +29,7 @@ export class ClienteDetalheComponent implements OnInit {
       this.id = params["id"];
     });
 
-    console.log(this.consultarPorId(this.id));
+    console.log((this.clientes = <any>this.consultarPorId(this.id)));
   }
 
   ngOnDestroy() {

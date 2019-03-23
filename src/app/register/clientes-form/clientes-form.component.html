@@ -1,64 +1,60 @@
 
+<div class="extra">
+  <div class="container mt-5 mb-5">
+    <div class="text-center mt-5 mb-1">
+      <h2>Cadastre um novo cliente</h2>
+    </div>
+    <form [formGroup]="cadastrarForm" class="form mt-4" (submit)="cadastrarCliente()">
+        <div class="form-group">
+            <small class="font-weight-bold">Id</small>
+            <input id="id" formControlName="id" class="form-control" autofocus>
+            <app-validation-message *ngIf="cadastrarForm.get('id').errors?.required" text="O campo id é obrigatório."></app-validation-message>
+            <app-validation-message *ngIf="cadastrarForm.get('id').errors?.minlength" text="Necessário ter pelo menos 1 dígito."></app-validation-message>
+        </div>
 
-<div class="text-center mt-5 mb-5">
-  <h2>Cadastre um novo cliente</h2>
-</div>
+        <div class="form-group">
+            <small class="font-weight-bold">Nome</small>
+            <input id="nome" formControlName="nome" placeholder="nome" class="form-control">
+            <app-validation-message *ngIf="cadastrarForm.get('nome').errors?.required" text="O campo nome é obrigatório."></app-validation-message>
+            <app-validation-message *ngIf="cadastrarForm.get('nome').errors?.minlength" text="Necessário ter pelo menos 2 letras."></app-validation-message>
+            <app-validation-message *ngIf="cadastrarForm.get('nome').errors?.maxlength" text="O máximo de letras é 100."></app-validation-message>
+        </div>
 
-<div class="container mt-5 mb-5">
-  <form [formGroup]="cadastrarForm" class="form mt-4" (submit)="cadastrarCliente()">
-      <div class="form-group">
-          <small class="font-weight-bold">Id</small>
-          <input id="id" formControlName="id" class="form-control" autofocus>
-          <app-validation-message *ngIf="cadastrarForm.get('id').errors?.required" text="O campo id é obrigatório."></app-validation-message>
-          <app-validation-message *ngIf="cadastrarForm.get('id').errors?.minlength" text="Necessário ter pelo menos 1 dígito."></app-validation-message>
-      </div>
+        <div class="form-group">
+            <small class="font-weight-bold">Sobrenome</small>
+            <input id="sobrenome" formControlName="sobrenome" placeholder="sobrenome" class="form-control">
+            <app-validation-message *ngIf="cadastrarForm.get('sobrenome').errors?.required" text="O campo sobrenome é obrigatório."></app-validation-message>
+            <app-validation-message *ngIf="cadastrarForm.get('sobrenome').errors?.minlength" text="Necessário ter pelo menos 2 letras."></app-validation-message>
+            <app-validation-message *ngIf="cadastrarForm.get('sobrenome').errors?.maxlength" text="O máximo de letras é 30."></app-validation-message>
+        </div>
 
-      <div class="form-group">
-          <small class="font-weight-bold">Nome</small>
-          <input id="nome" formControlName="nome" placeholder="nome" class="form-control">
-          <app-validation-message *ngIf="cadastrarForm.get('nome').errors?.required" text="O campo nome é obrigatório."></app-validation-message>
-          <app-validation-message *ngIf="cadastrarForm.get('nome').errors?.minlength" text="Necessário ter pelo menos 2 letras."></app-validation-message>
-          <app-validation-message *ngIf="cadastrarForm.get('nome').errors?.maxlength" text="O máximo de letras é 100."></app-validation-message>
-      </div>
+        <div class="form-group">
+            <small class="font-weight-bold">CPF</small>
+            <input id="cpf" formControlName="cpf" placeholder="000.000.000-00" class="form-control">
+            <app-validation-message *ngIf="cadastrarForm.get('cpf').errors?.required" text="O campo cpf é obrigatório."></app-validation-message>
+            <app-validation-message *ngIf="cadastrarForm.get('cpf').errors?.pattern" text="Informe um CPF válido."></app-validation-message>
+            <app-validation-message *ngIf="cadastrarForm.get('cpf').errors?.minlength" text="Necessário ter 11 dígitos."></app-validation-message>
+            <app-validation-message *ngIf="cadastrarForm.get('cpf').errors?.maxlength" text="Necessário ter 11 dígitos."></app-validation-message>
+        </div>
 
-      <div class="form-group">
-          <small class="font-weight-bold">Sobrenome</small>
-          <input id="sobrenome" formControlName="sobrenome" placeholder="sobrenome" class="form-control">
-          <app-validation-message *ngIf="cadastrarForm.get('sobrenome').errors?.required" text="O campo sobrenome é obrigatório."></app-validation-message>
-          <app-validation-message *ngIf="cadastrarForm.get('sobrenome').errors?.minlength" text="Necessário ter pelo menos 2 letras."></app-validation-message>
-          <app-validation-message *ngIf="cadastrarForm.get('sobrenome').errors?.maxlength" text="O máximo de letras é 30."></app-validation-message>
-      </div>
+        <div class="form-group">
+            <small class="font-weight-bold">Data de Nascimento</small>
+            <input id="data" formControlName="dataNascimento" type="date" class="form-control">
+        </div>
 
-      <div class="form-group">
-          <small class="font-weight-bold">CPF</small>
-          <input id="cpf" formControlName="cpf" placeholder="000.000.000-00" class="form-control">
-          <app-validation-message *ngIf="cadastrarForm.get('cpf').errors?.required" text="O campo cpf é obrigatório."></app-validation-message>
-          <app-validation-message *ngIf="cadastrarForm.get('cpf').errors?.pattern" text="Informe um CPF válido."></app-validation-message>
-          <app-validation-message *ngIf="cadastrarForm.get('cpf').errors?.minlength" text="Necessário ter 11 dígitos."></app-validation-message>
-          <app-validation-message *ngIf="cadastrarForm.get('cpf').errors?.maxlength" text="Necessário ter 11 dígitos."></app-validation-message>
-      </div>
+        <div class="form-group">
+            <small class="font-weight-bold">Profissão</small>
+            <select id="profissao" formControlName="profissao" class="custom-select" id="inputGroupSelect01">
+              <option selected>Escolher...</option>
+              <option value="Programador">Programador</option>
+              <option value="Analista">Analista</option>
+              <option value="Gerente">Gerente</option>
+              <option value="Estagiário">Estagiário</option>
+              <option value="QA">QA</option>
+            </select>
+        </div>
 
-      <div class="form-group">
-          <small class="font-weight-bold">Data de Nascimento</small>
-          <input id="data" formControlName="dataNascimento" type="date" class="form-control">
-      </div>
-
-      <div class="form-group">
-          <input id="idade" formControlName="idade" class="form-control" hidden>
-      </div>
-
-      <div class="form-group">
-          <small class="font-weight-bold">Profissão</small>
-          <select id="profissao" formControlName="profissao" class="custom-select" id="inputGroupSelect01">
-            <option selected>Escolher...</option>
-            <option value="Programador">Programador</option>
-            <option value="Analista">Analista</option>
-            <option value="Gerente">Gerente</option>
-            <option value="Estagiário">Estagiário</option>
-            <option value="QA">QA</option>
-          </select>
-      </div>
-
-      <button [disabled]="cadastrarForm.invalid" class="btn btn-primary btn-block">Cadastrar</button>
-  </form>
+        <button [disabled]="cadastrarForm.invalid" class="btn btn-primary btn-block">Cadastrar</button>
+    </form>
+  </div>
 </div>

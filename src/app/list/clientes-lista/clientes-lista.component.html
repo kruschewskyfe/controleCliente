@@ -1,37 +1,37 @@
-<div class="text-center mt-5 mb-5">
-  <h2>Clientes cadastrados</h2>
+<div class="extra">
+  <div class="container mt-5 mb-5 text-center">
+    <div class="text-center mt-5 mb-5">
+      <h2>Clientes cadastrados</h2>
+    </div>
+    <table class="table table-sm table-dark table-hover tborder">
+      <thead class="thead-dark tborder">
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>CPF</th>
+          <th>Data de Nascimento</th>
+          <th>Idade</th>
+          <th>Profissão</th>
+          <th> </th>
+          <th> </th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{ cliente.Id }}</td>
+          <td>{{ cliente.Nome }}</td>
+          <td>{{ cliente.Sobrenome }}</td>
+          <td>{{ cliente.Cpf }}</td>
+          <td>{{ cliente.DataNascimento | date:'dd/MM/yyyy'}}</td>
+          <td>{{ cliente.Idade }}</td>
+          <td>{{ cliente.Profissao }}</td>
+          <td><a class="btn btn-warning" [routerLink]="['/AtualizarCliente', cliente.Id]"><i aria-hidden="true" class="fa fa-edit"></i></a></td>
+          <td><a class="btn btn-danger" (click)="deletar(cliente.Id)"><i aria-hidden="true" class="fa fa-trash"></i></a></td>
+          <td><a class="btn btn-info" [routerLink]="['/Cliente', cliente.Id]"><i aria-hidden="true" class="fa fa-info-circle"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<div class="container mt-5 mb-5 text-center">
-  <table class="table table-sm table-dark table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th>Id</th>
-        <th>Nome</th>
-        <th>Sobrenome</th>
-        <th>CPF</th>
-        <th>Data de Nascimento</th>
-        <th>Idade</th>
-        <th>Profissão</th>
-        <th> </th>
-        <th> </th>
-        <th> </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cliente of clientes">
-        <td>{{ cliente.Id }}</td>
-        <td>{{ cliente.Nome }}</td>
-        <td>{{ cliente.Sobrenome }}</td>
-        <td>{{ cliente.Cpf }}</td>
-        <td>{{ cliente.DataNascimento | date:'dd/MM/yyyy'}}</td>
-        <td>{{ cliente.Idade }}</td>
-        <td>{{ cliente.Profissao }}</td>
-        <td><a class="btn btn-warning" [routerLink]="['/AtualizarCliente', cliente.Id]"><i aria-hidden="true" class="fa fa-edit"></i></a></td>
-        <td><a class="btn btn-danger" (click)="deletar(cliente.Id)"><i aria-hidden="true" class="fa fa-trash"></i></a></td>
-        <td><a class="btn btn-info" [routerLink]="['/Cliente', cliente.Id]"><i aria-hidden="true" class="fa fa-info-circle"></i></a></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
