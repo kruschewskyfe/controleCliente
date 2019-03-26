@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
 
 import { Cliente } from "./cliente";
 import { ClienteService } from "./cliente.service";
@@ -12,11 +11,7 @@ import { ClienteService } from "./cliente.service";
 export class ClientesListaComponent implements OnInit {
   clientes: Cliente[];
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private clienteService: ClienteService,
-    private router: Router
-  ) {}
+  constructor(private clienteService: ClienteService) {}
 
   ngOnInit() {
     this.listar();
@@ -24,7 +19,9 @@ export class ClientesListaComponent implements OnInit {
   }
 
   listar() {
-    this.clienteService.listar().subscribe(dados => (this.clientes = dados));
+    this.clienteService.listar().subscribe(dados => {
+      this.clientes = dados;
+    });
   }
 
   deletar(id) {

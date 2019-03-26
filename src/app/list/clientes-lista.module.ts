@@ -5,7 +5,7 @@ import { HeaderModule } from "../shared/header/header.module";
 import { UpdateClientModule } from "./update-client/update-client.module";
 import { ClienteDetalheComponent } from "./clientes-lista/cliente-detalhe/cliente-detalhe.component";
 import { RouterModule } from "@angular/router";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [ClientesListaComponent, ClienteDetalheComponent],
@@ -14,7 +14,8 @@ import { FormsModule } from "@angular/forms";
     HeaderModule,
     UpdateClientModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ClientesListaModule {}

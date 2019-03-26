@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ClienteService } from "../clientes-lista/cliente.service";
 import { UpClient } from "./upClient";
 import { Subscription } from "rxjs";
+import { Cliente } from "../clientes-lista/cliente";
+import * as moment from "moment";
 
 @Component({
   selector: "app-update-client",
@@ -16,6 +18,7 @@ export class UpdateClientComponent implements OnInit {
   inscricao: Subscription;
   atualizarForm: FormGroup;
   dataAtual = new Date();
+  clientes: Cliente[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,10 +32,10 @@ export class UpdateClientComponent implements OnInit {
       this.idAtual = params["id"];
     });
 
-    console.log(this.idAtual);
+    this.consultarPorId(this.idAtual);
 
     this.atualizarForm = this.formBuilder.group({
-      id: [{ value: this.idAtual, disabled: true }, Validators.required],
+      id: [{ value: "", disabled: true }, Validators.required],
       nome: [
         "",
         [Validators.required, Validators.minLength(2), Validators.maxLength(30)]
@@ -54,9 +57,9 @@ export class UpdateClientComponent implements OnInit {
           Validators.maxLength(11)
         ]
       ],
-      dataNascimento: [""],
+      dataNascimento: ["", Validators.required],
       idade: [],
-      profissao: [""]
+      profissao: ["", Validators.required]
     });
   }
 
@@ -92,5 +95,26 @@ export class UpdateClientComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  consultarPorId(id) {
+    this.clienteService.consultarPorId(id).subscribe(dados => {
+      this.populaForm(dados);
+    });
+  }
+
+  populaForm(dados) {
+    this.atualizarForm.setValue({
+      id: dados.Id,
+      nome: dados.Nome,
+      sobrenome: dados.Sobrenome,
+      cpf: dados.Cpf,
+      dataNascimento: dados.DataNascimento.slice(
+        0,
+        "1992-11-01T00:00:00".indexOf("T")
+      ),
+      idade: dados.Idade,
+      profissao: dados.Profissao
+    });
   }
 }

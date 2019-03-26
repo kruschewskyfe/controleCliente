@@ -3,40 +3,40 @@
     <div class="text-center mt-5 mb-1">
       <h2>Detalhes do cliente</h2>
     </div>
-    <form class="form mt-4">
+    <form class="form mt-4" [formGroup]="mostraClienteForm">
         <div class="form-group">
             <small class="font-weight-bold">Id</small>
-            <input id="id" type="text" class="form-control"  disabled>
+            <input formControlName="id" id="id" type="text" class="form-control">
         </div>
 
         <div class="form-group">
             <small class="font-weight-bold">Nome</small>
-            <input id="nome" class="form-control" disabled>
+            <input formControlName="nome" id="nome" class="form-control">
         </div>
 
         <div class="form-group">
             <small class="font-weight-bold">Sobrenome</small>
-            <input id="sobrenome" class="form-control" disabled>
+            <input formControlName="sobrenome" id="sobrenome" class="form-control">
         </div>
 
         <div class="form-group">
             <small class="font-weight-bold">CPF</small>
-            <input id="cpf" class="form-control" disabled>
+            <input formControlName="cpf" id="cpf" class="form-control">
         </div>
 
         <div class="form-group">
             <small class="font-weight-bold">Data de Nascimento</small>
-            <input id="data" class="form-control" disabled>
+            <input id="data" formControlName="dataNascimento" type="date" class="form-control" name="dataNascimento">
         </div>
 
         <div class="form-group">
             <small class="font-weight-bold">Idade</small>
-            <input id="idade" class="form-control" disabled>
+            <input formControlName="idade" id="idade" class="form-control">
         </div>
 
         <div class="form-group">
             <small class="font-weight-bold">Profissão</small>
-            <input id="profissao" class="form-control" disabled>
+            <input formControlName="profissao" id="profissao" class="form-control">
         </div>
 
         <a routerLink="/ConsultarCliente" class="btn btn-primary btn-block">Voltar</a>
