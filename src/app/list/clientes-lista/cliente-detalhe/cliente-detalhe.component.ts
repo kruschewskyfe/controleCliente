@@ -20,16 +20,22 @@ export class ClienteDetalheComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  consultarPorId(id) {
-    this.clienteService.consultarPorId(id);
-  }
-
   ngOnInit() {
     this.inscricao = this.route.params.subscribe((params: any) => {
       this.id = params["id"];
     });
+    console.log(this.id);
 
-    console.log((this.clientes = <any>this.consultarPorId(this.id)));
+    this.consultarPorId(this.id);
+
+    console.log(this.clientes);
+  }
+
+  consultarPorId(id) {
+    this.clienteService.consultarPorId(id).subscribe(dados => {
+      this.clientes = dados;
+      console.log(dados);
+    });
   }
 
   ngOnDestroy() {

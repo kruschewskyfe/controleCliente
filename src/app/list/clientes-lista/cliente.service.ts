@@ -30,7 +30,7 @@ export class ClienteService {
 
   atualizarCliente(cliente) {
     return this.http.put<Cliente[]>(
-      `${clienteUrl}/api/cliente/AlterarCliente/${cliente.id}`,
+      `${clienteUrl}/api/cliente/AlterarCliente`,
       cliente
     );
   }

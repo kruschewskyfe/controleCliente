@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { RouterModule } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { Cliente } from "./cliente";
 import { ClienteService } from "./cliente.service";
@@ -15,20 +14,27 @@ export class ClientesListaComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    //this.listar();
-    this.clientes = this.activatedRoute.snapshot.data["clientes"];
+    this.listar();
+    //this.clientes = this.activatedRoute.snapshot.data["clientes"];
   }
 
-  // listar() {
-  //   this.clienteService.listar().subscribe(dados => (this.clientes = dados));
-  // }
+  listar() {
+    this.clienteService.listar().subscribe(dados => (this.clientes = dados));
+  }
 
   deletar(id) {
-    this.clienteService.deletar(id).subscribe();
+    this.clienteService.deletar(id).subscribe(
+      () => {
+        alert("Cliente deletado com sucesso!");
+        this.listar();
+      },
+      err => console.log(err)
+    );
   }
 
   consultarPorId(id) {

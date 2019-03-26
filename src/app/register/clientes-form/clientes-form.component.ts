@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+
 import { NewClient } from "./new-client";
 import { CadastrarService } from "./cadastrar.service";
 
@@ -11,6 +12,8 @@ import { CadastrarService } from "./cadastrar.service";
 export class ClientesFormComponent implements OnInit {
   cadastrarForm: FormGroup;
   dataAtual = new Date();
+  sorteados = [];
+  valorMaximo = 1000;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -19,7 +22,7 @@ export class ClientesFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.cadastrarForm = this.formBuilder.group({
-      id: [, [Validators.required, Validators.minLength(1)]],
+      id: [],
       nome: [
         "",
         [Validators.required, Validators.minLength(2), Validators.maxLength(30)]
@@ -58,9 +61,18 @@ export class ClientesFormComponent implements OnInit {
     );
   };
 
+  criarUnico() {
+    let sugestao = Math.ceil(Math.random() * this.valorMaximo);
+    while (this.sorteados.indexOf(sugestao) >= 0) {
+      sugestao = Math.ceil(Math.random() * this.valorMaximo);
+    }
+    this.sorteados.push(sugestao);
+    return sugestao;
+  }
+
   cadastrarCliente() {
     const novoC: NewClient = {
-      id: this.cadastrarForm.value.id,
+      id: this.criarUnico(),
       nome: this.cadastrarForm.value.nome,
       sobrenome: this.cadastrarForm.value.sobrenome,
       cpf: this.cadastrarForm.value.cpf,
