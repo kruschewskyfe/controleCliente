@@ -34,6 +34,7 @@
         <div class="form-group">
             <small class="font-weight-bold">Data de Nascimento</small>
             <input id="data" formControlName="dataNascimento" type="date" class="form-control">
+             <app-validation-message *ngIf="cadastrarForm.get('dataNascimento').errors?.required" text="O campo data de nascimento é obrigatório."></app-validation-message>
         </div>
 
         <div class="form-group">

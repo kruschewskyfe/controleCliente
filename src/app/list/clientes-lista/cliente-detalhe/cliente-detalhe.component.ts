@@ -55,7 +55,7 @@ export class ClienteDetalheComponent implements OnInit {
       cpf: dados.Cpf,
       dataNascimento: dados.DataNascimento.slice(
         0,
-        "1992-11-01T00:00:00".indexOf("T")
+        dados.DataNascimento.indexOf("T")
       ),
       idade: dados.Idade,
       profissao: dados.Profissao

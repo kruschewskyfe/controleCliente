@@ -44,9 +44,9 @@ export class ClientesFormComponent implements OnInit {
           Validators.maxLength(11)
         ]
       ],
-      dataNascimento: [""],
+      dataNascimento: ["", Validators.required],
       idade: [],
-      profissao: [""]
+      profissao: ["", Validators.required]
     });
   }
 
